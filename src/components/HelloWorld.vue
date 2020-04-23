@@ -1,43 +1,55 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h2>{{ fullName }}</h2>
+    <button @click="alertHi">Alert</button>
+    <button @click="logMessage('Hi')">Log</button>
   </div>
 </template>
 
 <script lang="ts">
+//Documentation decorators: https://github.com/kaorun343/vue-property-decorator
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
+  //Property waartegen we kunnen binden via {{ interpolatie }}
+  //Properties die binnenkomen via element: <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  //@Prop() kunnen we gebruiken dankzij vue-property-decorator package
+  /*props: {
+      msg: String
+  }*/
   @Prop() private msg!: string;
+
+  //Zoals in data()
+  /* data: function() { 
+      return {
+        firstName: ‘Vue’ ,
+        lastName: ‘Mastery’
+      }
+    } 
+ */
+  firstName = 'Michaël';
+  lastName = 'Cloots';
+
+  //computed properties (computed: { ... })
+  get fullName(): string {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  //methods (methods: { ... })
+  alertHi() {
+    alert('Hi');
+  }
+
+  logMessage(message: string) {
+    console.log(message);
+  }
+
+  //lifecycle hooks
+  mounted() {
+    console.info('HelloWorld component mounted');
+  }
 }
 </script>
 
