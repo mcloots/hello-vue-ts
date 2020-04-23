@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+   <nav-bar></nav-bar>
+    <div id='router-view'>
+      <router-view/>
+    </div>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
   </div>
 </template>
 
@@ -25,5 +28,10 @@ export default class App extends Vue {}
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#router-view {
+  padding: 20px 0px;
+  margin: 0 auto;
 }
 </style>
