@@ -1,14 +1,34 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue';
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
 
-Vue.use(VueRouter)
+//Bootstrap component Vue
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+import HelloWorld from '@/components/HelloWorld.vue';
+import NavBar from '@/components/Navigation/NavBar.vue';
+
+// import Login from '@/components/Authentication/Login.vue';
+
+Vue.component("nav-bar", NavBar);
+Vue.use(VueRouter);
+Vue.use(BootstrapVue);
 
   const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: HelloWorld
+    component: HelloWorld,
+    meta: { title: 'Hello World!' }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '@/components/Authentication/Login.vue')
   }
 ]
 
