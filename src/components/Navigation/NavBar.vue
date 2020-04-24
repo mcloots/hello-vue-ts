@@ -1,6 +1,6 @@
 <template>
     <b-navbar toggleable="md" type="dark" variant="info">
-    <b-navbar-brand href="#">Hello Vue TS
+    <b-navbar-brand  :to="{ name: 'Home'}" :active="$route.name == 'Home'">Hello Vue TS
       <!-- <img :src="require('../../assets/logo.png')" id='logo'> Meal App -->
     </b-navbar-brand>
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -8,6 +8,7 @@
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'Home'}" :active="$route.name == 'Home'">Home</b-nav-item>
         <b-nav-item :to="{ name: 'Login'}" :active="$route.name == 'Login'">Login</b-nav-item>
+        <b-nav-item :to="{ name: 'Register'}" :active="$route.name == 'Register'">Register</b-nav-item>
         <b-nav-item-dropdown text="Categories" right>
           <b-dropdown-item>
             Test 1
