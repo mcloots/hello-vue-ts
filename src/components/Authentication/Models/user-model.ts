@@ -1,5 +1,5 @@
 export interface UserModel {
-    name: string;
-    email: string;
+    name: string | null;
+    email: string | null;
     loggedIn: boolean;
 }
