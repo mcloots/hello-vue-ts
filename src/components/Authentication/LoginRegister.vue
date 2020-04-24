@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">{{formTitle}}</div>
+          <div class="card-header">{{formTitle}} {{user}}</div>
           <div class="card-body">
             <div v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="submit">
@@ -73,6 +73,10 @@
 import { Component, Prop, Watch, Vue } from "vue-property-decorator";
 import { RegisterLogin as LoginRegisterForm } from "@/components/Authentication/Models/registerLogin";
 import firebase from "firebase";
+import { namespace, State } from 'vuex-class';
+
+
+//const userModule = namespace('User');
 
 @Component({
   //name: "login"
@@ -82,6 +86,8 @@ export default class Login extends Vue {
   loginRegisterForm = new LoginRegisterForm("", "", "");
   isLogin = true;
   formTitle!: string;
+
+
 
   @Watch("$route", { immediate: true, deep: true })
   onUrlChange(newVal: any) {
@@ -93,43 +99,47 @@ export default class Login extends Vue {
       this.formTitle = "Register";
     }
   }
+  
 
   mounted() {
     //we know route, so we know if this is login or register form
   }
 
   submit() {
-    if(this.isLogin) {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.loginRegisterForm.email, this.loginRegisterForm.password)
-      .then(data => {
-        this.$router.replace({ name: "Dashboard" });
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+    if (this.isLogin) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(
+          this.loginRegisterForm.email,
+          this.loginRegisterForm.password
+        )
+        .then(data => {
+          this.$router.replace({ name: "Dashboard" });
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
     } else {
       firebase
-      .auth()
-      .createUserWithEmailAndPassword(
-        this.loginRegisterForm.email,
-        this.loginRegisterForm.password
-      )
-      .then(data => {
-        if (data.user != null) {
-          data.user
-            .updateProfile({
-              displayName: this.loginRegisterForm.name
-            })
-            .then(() => {
-              console.log('ready');
-            });
-        }
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+        .auth()
+        .createUserWithEmailAndPassword(
+          this.loginRegisterForm.email,
+          this.loginRegisterForm.password
+        )
+        .then(data => {
+          if (data.user != null) {
+            data.user
+              .updateProfile({
+                displayName: this.loginRegisterForm.name
+              })
+              .then(() => {
+                console.log("ready");
+              });
+          }
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
     }
   }
 }

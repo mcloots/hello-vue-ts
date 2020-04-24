@@ -7,8 +7,9 @@
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'Home'}" :active="$route.name == 'Home'">Home</b-nav-item>
-        <b-nav-item :to="{ name: 'Login'}" :active="$route.name == 'Login'">Login</b-nav-item>
-        <b-nav-item :to="{ name: 'Register'}" :active="$route.name == 'Register'">Register</b-nav-item>
+        <b-nav-item v-if="user && !user.loggedIn" :to="{ name: 'Login'}" :active="$route.name == 'Login'">Login</b-nav-item>
+          <b-nav-item v-if="!user || user.loggedIn" :to="{ name: 'Logout'}" :active="$route.name == 'Logout'">Logout</b-nav-item>
+        <b-nav-item v-if="user && !user.loggedIn" :to="{ name: 'Register'}" :active="$route.name == 'Register'">Register</b-nav-item>
         <b-nav-item-dropdown text="Categories" right>
           <b-dropdown-item>
             Test 1
@@ -40,11 +41,12 @@
 <script lang="ts">
 //Documentation decorators: https://github.com/kaorun343/vue-property-decorator
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import store from '@/store';
 
 @Component({
     //name: "nav-bar"
 })
 export default class NavBar extends Vue {
-
+  user = this.$store.state.myUser.userM;
 }
 </script>
