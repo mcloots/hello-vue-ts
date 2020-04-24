@@ -8,6 +8,7 @@
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'Home'}" :active="$route.name == 'Home'">Home</b-nav-item>
         <b-nav-item :to="{ name: 'Login'}" :active="$route.name == 'Login'">Login</b-nav-item>
+        <b-nav-item :to="{ name: 'Register'}" :active="$route.name == 'Register'">Register</b-nav-item>
         <b-nav-item-dropdown text="Categories" right>
           <b-dropdown-item>
             Test 1

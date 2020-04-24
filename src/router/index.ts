@@ -8,6 +8,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import HelloWorld from '@/components/HelloWorld.vue';
 import NavBar from '@/components/Navigation/NavBar.vue';
+import Register from '@/components/Authentication/Register.vue';
+import Dashboard from '@/components/Dashboard/Dashboard.vue';
 
 // import Login from '@/components/Authentication/Login.vue';
 
@@ -25,10 +27,23 @@ Vue.use(BootstrapVue);
   {
     path: '/login',
     name: 'Login',
+    meta: { title: 'Login' },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '@/components/Authentication/Login.vue')
+  },
+  {
+      path: '/register',
+      name: 'Register',
+      component: Register,
+      meta: { title: 'Register' }
+  },
+  {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      meta: { title: 'Dashoard' }
   }
 ]
 
