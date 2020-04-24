@@ -1,6 +1,6 @@
 <template>
     <b-navbar toggleable="md" type="dark" variant="info">
-    <b-navbar-brand href="#">Hello Vue TS
+    <b-navbar-brand  :to="{ name: 'Home'}" :active="$route.name == 'Home'">Hello Vue TS
       <!-- <img :src="require('../../assets/logo.png')" id='logo'> Meal App -->
     </b-navbar-brand>
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
