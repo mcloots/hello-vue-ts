@@ -72,7 +72,7 @@
 <script lang="ts">
 //Documentation decorators: https://github.com/kaorun343/vue-property-decorator
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Register as registerForm } from "@/components/Authentication/Models/register";
+import { RegisterLogin as RegisterForm } from "@/components/Authentication/Models/registerLogin";
 import firebase from "firebase";
 
 @Component({
@@ -80,7 +80,7 @@ import firebase from "firebase";
 })
 export default class Register extends Vue {
   error = null;
-  registerForm = new registerForm("", "", "");
+  registerForm = new RegisterForm("", "", "");
 
   submit() {
     firebase
