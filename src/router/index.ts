@@ -8,7 +8,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import HelloWorld from '@/components/HelloWorld.vue';
 import NavBar from '@/components/Navigation/NavBar.vue';
-import Register from '@/components/Authentication/Register.vue';
 import Dashboard from '@/components/Dashboard/Dashboard.vue';
 
 // import Login from '@/components/Authentication/Login.vue';
@@ -17,7 +16,7 @@ Vue.component("nav-bar", NavBar);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
-  const routes: Array<RouteConfig> = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
@@ -31,19 +30,22 @@ Vue.use(BootstrapVue);
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/components/Authentication/Login.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/components/Authentication/LoginRegister.vue')
   },
   {
-      path: '/register',
-      name: 'Register',
-      component: Register,
-      meta: { title: 'Register' }
+    path: '/register',
+    name: 'Register',
+    meta: { title: 'Register' },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '@/components/Authentication/LoginRegister.vue')
   },
   {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      meta: { title: 'Dashoard' }
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    meta: { title: 'Dashoard' }
   }
 ]
 
