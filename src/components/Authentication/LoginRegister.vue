@@ -70,10 +70,9 @@
 
 <script lang="ts">
 //Documentation decorators: https://github.com/kaorun343/vue-property-decorator
-import { Component, Prop, Watch, Vue } from "vue-property-decorator";
+import { Component, Watch, Vue } from "vue-property-decorator";
 import { RegisterLogin as LoginRegisterForm } from "@/components/Authentication/Models/registerLogin";
 import firebase from "firebase";
-import { namespace, State } from 'vuex-class';
 
 
 //const userModule = namespace('User');
