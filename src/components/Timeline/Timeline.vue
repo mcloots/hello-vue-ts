@@ -2,21 +2,20 @@
   <div class="container">
     <h2>Timeline</h2>
     <!-- <div v-if="user" class="alert alert-success" role="alert">You are logged in!</div>
-    <h3>{{ user }}</h3> -->
+    <h3>{{ user }}</h3>-->
     <ul>
-        <li v-for="com in communicationArray" :key="com.id">
-            <a @click="selectedComm = com">{{com.message}}</a>
-        </li>
+      <li v-for="com in communicationArray" :key="com.id">
+        <a @click="selectedComm = com">{{com.message}}</a>
+      </li>
     </ul>
     <!-- v-if: added er removed from DOM -->
     <div v-if="selectedComm">{{ selectedComm.message }}</div>
     <!-- Show/hide, but always in DOM : display:none -->
-    <div v-if="selectedComm">{{ selectedComm.message }}</div>
     <div>
-        <label for="show">
-            Show more
-            <input type="checkbox" id="show" v-model="showMore" />
-        </label>
+      <label for="show">
+        Show more
+        <input type="checkbox" id="show" v-model="showMore" />
+      </label>
     </div>
     <p v-show="showMore">Show me!</p>
   </div>
@@ -33,10 +32,32 @@ export default class Timeline extends Vue {
   selectedComm: Communication | null = null;
   showMore: boolean = false;
 
-  communicationArray: Communication[] = [
-    { id: 1, message: "Eerste bericht" },
-    { id: 2, message: "Tweede bericht" },
-    { id: 3, message: "Derde bericht" }
-  ];
+  communicationArray: Communication[] = [];
+
+  //Methods
+  async getCommunications() : Promise<Communication[]> {
+    let comms: Communication[] = [
+      { id: 1, message: "Eerste bericht" },
+      { id: 2, message: "Tweede bericht" },
+      { id: 3, message: "Derde bericht" }
+    ];
+
+    return new Promise(resolve => {
+      setTimeout(() => resolve(comms), 1500);
+    });
+  }
+
+  async loadCommunications() {
+      this.communicationArray = [];
+      this.communicationArray = await this.getCommunications();
+  }
+
+  //Lifecycle hooks
+
+  created() {
+    //no templates and virtual dom
+    console.log("Fetching data from API/Firebase/...");
+    this.loadCommunications();
+  }
 }
 </script>
