@@ -7,6 +7,7 @@
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'Home'}" :active="$route.name == 'Home'">Home</b-nav-item>
+        <b-nav-item v-if="!user || user.loggedIn" :to="{ name: 'Timeline'}" :active="$route.name == 'Timeline'">Timeline</b-nav-item>
         <b-nav-item v-if="user && !user.loggedIn" :to="{ name: 'Login'}" :active="$route.name == 'Login'">Login</b-nav-item>
           <b-nav-item v-if="!user || user.loggedIn" :to="{ name: 'Logout'}" :active="$route.name == 'Logout'">Logout</b-nav-item>
         <b-nav-item v-if="user && !user.loggedIn" :to="{ name: 'Register'}" :active="$route.name == 'Register'">Register</b-nav-item>

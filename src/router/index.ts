@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import HelloWorld from '@/components/HelloWorld.vue';
 import NavBar from '@/components/Navigation/NavBar.vue';
 import Dashboard from '@/components/Dashboard/Dashboard.vue';
+import Timeline from '@/components/Timeline/Timeline.vue';
 
 // import Login from '@/components/Authentication/Login.vue';
 
@@ -55,6 +56,12 @@ const routes: Array<RouteConfig> = [
     name: 'Dashboard',
     component: Dashboard,
     meta: { title: 'Dashoard' }
+  },
+  {
+    path: '/timeline',
+    name: 'Timeline',
+    component: Timeline,
+    meta: { title: 'Timeline' }
   }
 ]
 
