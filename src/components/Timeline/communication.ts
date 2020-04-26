@@ -1,3 +1,3 @@
 export class Communication {
-    constructor(public id:number, public message:string, public date:string) {}
+    constructor(public id:number,public title: string, public message:string, public date:Date) {}
 }
