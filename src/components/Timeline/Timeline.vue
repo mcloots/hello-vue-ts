@@ -3,24 +3,48 @@
     <h2>Timeline</h2>
     <!-- <div v-if="user" class="alert alert-success" role="alert">You are logged in!</div>
     <h3>{{ user }}</h3>-->
-    <ul>
+    <!-- <ul>
       <li v-for="com in communicationArray" :key="com.id">
         <a @click="selectedComm = com">{{com.message}}</a>
       </li>
-    </ul>
+    </ul> -->
     <!-- v-if: added er removed from DOM -->
-    <div v-if="selectedComm">{{ selectedComm.message }}</div>
+    <!-- <div v-if="selectedComm">{{ selectedComm.message }}</div> -->
     <!-- Show/hide, but always in DOM : display:none -->
-    <div>
+    <!-- <div>
       <label for="show">
         Show more
         <input type="checkbox" id="show" v-model="showMore" />
       </label>
     </div>
     <p v-show="showMore">Show me!</p>
-    <input v-if="selectedComm" type="date" v-model="selectedComm.date" />
+    <input v-if="selectedComm" type="date" v-model="selectedComm.date" /> -->
     <!-- Filter -->
-    <div v-if="selectedComm">{{ selectedComm.date | shortDate }}</div>
+    <!-- <div v-if="selectedComm">{{ selectedComm.date | shortDate }}</div> -->
+
+<div>
+   <!-- Latest update -->
+  <vue-timeline-update v-for="com in communicationArray" :key="com.id"
+    :date="com.date"
+    :title="com.title"
+    :description="com.message"
+    category="announcement"
+    icon="code"
+    color="blue"
+  />
+
+  
+  <!-- <vue-timeline-update
+    :date="new Date('2016-09-30')"
+    title="v2.0.0 - Ghost in the Shell"
+    description="Today I am thrilled to announce the release of Vue.js 2.0.0"
+    thumbnail="/images/vuetimeline/ghost_in_the_shell.jpg"
+    category="announcement"
+    icon="code"
+    color="white"
+    is-last
+  /> -->
+</div>
   </div>
 </template>
 <script lang="ts">
@@ -37,7 +61,10 @@ import store from "@/store";
 @Component({
   filters: {
     shortDate(value: string) {
-      return format(parse(value,inputDateFormat, new Date()), displayDateFormat);
+      return format(
+        parse(value, inputDateFormat, new Date()),
+        displayDateFormat
+      );
     }
   }
 })
@@ -53,18 +80,52 @@ export default class Timeline extends Vue {
     let comms: Communication[] = [
       {
         id: 1,
+        title: 'Nummer 1',
         message: "Eerste bericht",
-        date: format(new Date(2020, 1, 1), inputDateFormat)
+        //date: format(new Date(2020, 1, 1), inputDateFormat)
+        date: new Date(2020, 1, 1)
       },
       {
         id: 2,
+        title: 'Nummer 2',
         message: "Tweede bericht",
-        date: format(new Date(2017, 2, 1), inputDateFormat)
+        date: new Date(2017, 2, 1)
       },
       {
         id: 3,
+        title: 'Nummer 3',
         message: "Derde bericht",
-        date: format(new Date(2009, 3, 1), inputDateFormat)
+        date: new Date(2009, 3, 1)
+      },
+      {
+        id: 4,
+        title: 'Nummer 4',
+        message: "Derde bericht",
+        date: new Date(2009, 3, 1)
+      },
+      {
+        id: 5,
+        title: 'Nummer 5',
+        message: "Derde bericht",
+        date: new Date(2009, 3, 1)
+      },
+      {
+        id: 6,
+        title: 'Nummer 6',
+        message: "Derde bericht",
+        date: new Date(2009, 3, 1)
+      },
+      {
+        id: 7,
+        title: 'Nummer 7',
+        message: "Derde bericht",
+        date: new Date(2009, 3, 1)
+      },
+      {
+        id: 8,
+        title: 'Nummer 8',
+        message: "Derde bericht",
+        date: new Date(2009, 3, 1)
       }
     ];
 
@@ -103,3 +164,6 @@ export default class Timeline extends Vue {
   }
 }
 </script>
+<style lang="scss">
+
+</style>

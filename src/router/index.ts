@@ -13,7 +13,15 @@ import Timeline from '@/components/Timeline/Timeline.vue';
 
 // import Login from '@/components/Authentication/Login.vue';
 
+
+// timeline growthbunker
+import VueTimeline from "@growthbunker/vuetimeline";
+
 Vue.component("nav-bar", NavBar);
+Vue.use(VueTimeline, {
+  // Specify the theme to use: dark or light (dark by default).
+  theme: "light"
+});
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
